@@ -1,0 +1,36 @@
+# See LICENSE for license details.
+base_dir := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
+BUILD_DIR := $(base_dir)/builds/debugpynq
+MODEL := DebugPynqFPGAChip
+PROJECT := sifive.freedom.debug.pynq
+export FPGA_DIR := $(base_dir)/fpga-shells/xilinx
+export BASE_DIR := $(base_dir)
+export SDK_DIR := $(BUILD_DIR)/sdk
+export CONFIG_PROJECT := sifive.freedom.debug.pynq
+export CONFIG := DebugPynqConfig
+export BOARD := pynq
+export BOOTROM_DIR := $(base_dir)/bootrom/xip
+
+rocketchip_dir := $(base_dir)/rocket-chip
+sifiveblocks_dir := $(base_dir)/sifive-blocks
+VSRCS := \
+	$(rocketchip_dir)/vsrc/AsyncResetReg.v \
+	$(rocketchip_dir)/vsrc/plusarg_reader.v \
+	$(sifiveblocks_dir)/vsrc/SRLatch.v \
+	$(FPGA_DIR)/common/vsrc/PowerOnResetFPGAOnly.v \
+	$(BUILD_DIR)/$(CONFIG_PROJECT).$(CONFIG).rom.v \
+	$(BUILD_DIR)/$(CONFIG_PROJECT).$(CONFIG).v
+
+include common.mk
+
+hdf := $(SDK_DIR)/zynqDummy.hdf
+$(hdf): 
+	vivado -mode batch -source $(fpga_common_script_dir)/genzynqhdf.tcl
+hdf: $(hdf)
+
+edtm: $(hdf)
+	xsct $(fpga_common_script_dir)/edtmsdk.tcl
+	@echo "Connect to 192.168.1.10 7 \n\tOP\t\tFunc\n\t0\t\tbulk mem write\n\t1\t\tbulk mem read\n\t2\t\t4B write\n\t3\t\t4B read\n\t4\t\tFlush Cache\nideal packet stream in bytes\nOP\t|\"A5\"\t|len0\t|len1\t|addr0\t|addr1\t|addr2\t|addr3\t| Data in Little-Endian"
+
+cleansdkproject:
+	rm -rf $(SDK_DIR)/zynq_hw $(SDK_DIR)/edtm $(SDK_DIR)/edtm_bsp $(SDK_DIR)/.Xil $(SDK_DIR)/.metadata 

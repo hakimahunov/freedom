@@ -95,6 +95,7 @@ $(mcs): $(bit)
 
 .PHONY: mcs
 mcs: $(mcs)
+bit: $(bit)
 
 # Clean
 .PHONY: clean
