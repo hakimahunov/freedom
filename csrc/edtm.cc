@@ -1,4 +1,4 @@
-#include "dtmxsdb.h"
+#include "edtm.h"
 #include "debug_defines.h"
 #include "encoding.h"
 #include <stdlib.h>
@@ -8,6 +8,10 @@
 #include <pthread.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <netinet/tcp.h>
+#include <cstring>
+#include <fcntl.h> 
+#include <unistd.h>
 
 #define RV_X(x, s, n) \
   (((x) >> (s)) & ((1 << (n)) - 1))
@@ -58,65 +62,70 @@
 
 #define LOG
 
-unsigned int port;
-uint32_t dtmxsdb_t::do_command(dtmxsdb_t::req r)
+unsigned int sock;
+int ret;
+uint8_t rbuffer[8] = {3, 165, 4, 0, 0, 0, 0, 0};
+uint8_t wbuffer[12] = {2, 165, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint32_t edtm_t::do_command(edtm_t::req r)
 {
-  unsigned int a,b,addr;
-  addr = 0x40000000 | (r.addr << 2);
-  if(r.op == 2)
-    sprintf(message,"mwr -force 0x%x 0x%x\n",addr,r.data);
-  else
-    sprintf(message,"mrd -force 0x%x\n",addr);
+  r.addr = 0x40000000 | (r.addr << 2);
+  uint8_t *message;
+  if(r.op == 2) {
+    *(uint32_t *)(&wbuffer[4]) = (uint32_t)(r.addr);
+    *(uint32_t *)(&wbuffer[8]) = (uint32_t)(r.data);
+    message = wbuffer;
+  }
+  else {
+    *(uint32_t *)(&rbuffer[4]) = (uint32_t)(r.addr);
+    message = rbuffer;
+  }
 #ifdef LOG
     printf("%c A:0x%x D:0x%x\n",(r.op == 2) ? 'W':'R',r.addr,r.data);
 #endif
-  if( send(sock , message , strlen(message) , 0) < 0)
+  if( send(sock , message , r.op == 2 ? 12 : 8 , 0) < 0)
   {
     puts("Send failed");
     exit(1);
   }
-  while(1)
+  if( recv(sock , &ret, r.op == 2 ? 1 : 4 , 0) < 0)
   {
-    if( recv(sock , response , 50 , 0) < 0)
-    {
-      puts("recv failed");
-      exit(1);
-    }
-    else if (strstr(response,"okay"))
-    {
-      sscanf(response,"okay %x:   %x\n",&a,&b);
+    puts("recv failed");
+    exit(1);
+  }
+  if (r.op == 1) {
 #ifdef LOG
-      if (r.op == 1)
-        printf("Resp:0x%x\n",b);
+    printf("Resp:0x%x\n",(uint32_t)ret);
 #endif
-      return b;
-    }
+    memset(&rbuffer[3],0,5);
+    return (uint32_t)ret;
+  } else if (rbuffer[0] == 1) {
+    memset(&wbuffer[3],0,9);
+    return 1;
   }
 }
 
-uint32_t dtmxsdb_t::read(uint32_t addr)
+uint32_t edtm_t::read(uint32_t addr)
 {
   return do_command((req){addr, 1, 0});
 }
 
-uint32_t dtmxsdb_t::write(uint32_t addr, uint32_t data)
+uint32_t edtm_t::write(uint32_t addr, uint32_t data)
 {
-  do_command((req){addr, 2, data});
-  return 0;
+  return do_command((req){addr, 2, data});
 }
 
-void dtmxsdb_t::nop()
+void edtm_t::nop()
 {
   do_command((req){0, 0, 0});
 }
 
-void dtmxsdb_t::select_hart(int hartsel) {
+void edtm_t::select_hart(int hartsel) {
   int dmcontrol = read(DMI_DMCONTROL);
   write (DMI_DMCONTROL, set_field(dmcontrol, DMI_DMCONTROL_HARTSEL, hartsel));
   current_hart = hartsel;
 }
 
-int dtmxsdb_t::enumerate_harts() {
+int edtm_t::enumerate_harts() {
   int dmstatus;
   int hartsel = 0;
   while(1) {
@@ -130,7 +139,7 @@ int dtmxsdb_t::enumerate_harts() {
   return hartsel;
 }
 
-void dtmxsdb_t::halt(int hartsel)
+void edtm_t::halt(int hartsel)
 {
   int dmcontrol = DMI_DMCONTROL_HALTREQ | DMI_DMCONTROL_DMACTIVE;
   dmcontrol = set_field(dmcontrol, DMI_DMCONTROL_HARTSEL, hartsel);
@@ -146,7 +155,7 @@ void dtmxsdb_t::halt(int hartsel)
   current_hart = hartsel;
 }
 
-void dtmxsdb_t::resume(int hartsel)
+void edtm_t::resume(int hartsel)
 {
   int dmcontrol = DMI_DMCONTROL_RESUMEREQ | DMI_DMCONTROL_DMACTIVE;
   dmcontrol = set_field(dmcontrol, DMI_DMCONTROL_HARTSEL, hartsel);
@@ -162,7 +171,7 @@ void dtmxsdb_t::resume(int hartsel)
   current_hart = hartsel;
 }
 
-uint64_t dtmxsdb_t::save_reg(unsigned regno)
+uint64_t edtm_t::save_reg(unsigned regno)
 {
   uint32_t data[xlen/(8*4)];
   uint32_t command = AC_ACCESS_REGISTER_TRANSFER | AC_AR_SIZE(xlen) | AC_AR_REGNO(regno);
@@ -175,7 +184,7 @@ uint64_t dtmxsdb_t::save_reg(unsigned regno)
   return result;
 }
 
-void dtmxsdb_t::restore_reg(unsigned regno, uint64_t val)
+void edtm_t::restore_reg(unsigned regno, uint64_t val)
 {
   uint32_t data[xlen/(8*4)];
   data[0] = (uint32_t) val;
@@ -192,7 +201,7 @@ void dtmxsdb_t::restore_reg(unsigned regno, uint64_t val)
 
 }
 
-uint32_t dtmxsdb_t::run_abstract_command(uint32_t command,
+uint32_t edtm_t::run_abstract_command(uint32_t command,
                                      const uint32_t program[], size_t program_n,
                                      uint32_t data[], size_t data_n)
 { 
@@ -229,138 +238,95 @@ uint32_t dtmxsdb_t::run_abstract_command(uint32_t command,
 
 }
 
-size_t dtmxsdb_t::chunk_align()
+size_t edtm_t::chunk_align()
 {
   return xlen / 8;
 }
 
-void dtmxsdb_t::read_chunk(uint64_t taddr, size_t len, void* dst)
+void edtm_t::read_chunk(uint64_t taddr, size_t len, void* dst)
 {
-  uint32_t prog[ram_words];
-  uint32_t data[data_words];
-
-  uint8_t * curr = (uint8_t*) dst;
-
-  halt(current_hart);
-
-  uint64_t s0 = save_reg(S0);
-  uint64_t s1 = save_reg(S1);
-  
-  prog[0] = LOAD(xlen, S1, S0, 0);
-  prog[1] = ADDI(S0, S0, xlen/8);
-  prog[2] = EBREAK;
-
-  data[0] = (uint32_t) taddr;
-  if (xlen > 32) {
-    data[1] = (uint32_t) (taddr >> 32);
-  }
-
-  // Write s0 with the address, then execute program buffer.
-  // This will get S1 with the data and increment s0.
-  uint32_t command = AC_ACCESS_REGISTER_TRANSFER |
-    AC_ACCESS_REGISTER_WRITE |
-    AC_ACCESS_REGISTER_POSTEXEC |
-    AC_AR_SIZE(xlen) | 
-    AC_AR_REGNO(S0);
-
-  RUN_AC_OR_DIE(command, prog, 3, data, xlen/(4*8));
-
-  // TODO: could use autoexec here.
-  for (size_t i = 0; i < (len * 8 / xlen); i++){
-    command = AC_ACCESS_REGISTER_TRANSFER |
-      AC_AR_SIZE(xlen) |
-      AC_AR_REGNO(S1);
-    if ((i + 1) < (len * 8 / xlen)) {
-      command |= AC_ACCESS_REGISTER_POSTEXEC;
+  ret = 0;
+  char data[8];
+  data[1] = 165;
+  data[0] = 1;
+  while (len / 1440) {
+    *(uint16_t *)(&data[2]) = 1440;
+    *(uint32_t *)(&data[4]) = taddr;
+    data[7] = (1 << 4) + ((char)(data[7] << 4) >> 4);
+    ret = ::write(sock , (void *)data , 8); 
+    if ( ret == 0 || ret < 0) {
+      printf("Send failed 0x%x \n",taddr);
+      exit(1);
     }
-    
-    RUN_AC_OR_DIE(command, 0, 0, data, xlen/(4*8));
-
-    memcpy(curr, data, xlen/8);
-    curr += xlen/8;
+    ::read(sock , dst, 1440);
+    dst += (size_t)1440;
+    taddr += 1440;
+#ifdef LOG
+    printf(" TA:0x%x L:0x%x DSTP:0x%x \n",taddr,len,dst);
+#endif
+    len -= 1440;
+  } 
+  if (len > 0) {
+    *(uint16_t *)(&data[2]) = len;
+    *(uint32_t *)(&data[4]) = taddr;
+    data[7] = (1 << 4) + ((char)(data[7] << 4) >> 4);
+    ret = ::write(sock, (void *)data, 8);
+    if ( ret == 0 || ret < 0) {
+      printf("Send failed 0x%x \n",taddr);
+      exit(1);
+    }    
+    ::read(sock, dst, len);
   }
-
-  restore_reg(S0, s0);
-  restore_reg(S1, s1);
-
-  resume(current_hart); 
-
 }
 
-void dtmxsdb_t::write_chunk(uint64_t taddr, size_t len, const void* src)
+void edtm_t::write_chunk(uint64_t taddr, size_t len, const void* src)
 {  
-  uint32_t prog[ram_words];
-  uint32_t data[data_words];
-
-  const uint8_t * curr = (const uint8_t*) src;
-
-  halt(current_hart);
-
-  uint64_t s0 = save_reg(S0);
-  uint64_t s1 = save_reg(S1);
-  
-  prog[0] = STORE(xlen, S1, S0, 0);
-  prog[1] = ADDI(S0, S0, xlen/8);
-  prog[2] = EBREAK;
-  
-  data[0] = (uint32_t) taddr;
-  if (xlen > 32) {
-    data[1] = (uint32_t) (taddr >> 32);
-  }
-
-  // Write the program (not used yet).
-  // Write s0 with the address. 
-  uint32_t command = AC_ACCESS_REGISTER_TRANSFER |
-    AC_ACCESS_REGISTER_WRITE |
-    AC_AR_SIZE(xlen) |
-    AC_AR_REGNO(S0);
-  
-  RUN_AC_OR_DIE(command, prog, 3, data, xlen/(4*8));
-
-  // Use Autoexec for more than one word of transfer.
-  // Write S1 with data, then execution stores S1 to
-  // 0(S0) and increments S0.
-  // Each time we write XLEN bits.
-  memcpy(data, curr, xlen/8);
-  curr += xlen/8;
-  
-  command = AC_ACCESS_REGISTER_TRANSFER |
-    AC_ACCESS_REGISTER_POSTEXEC |
-    AC_ACCESS_REGISTER_WRITE | 
-    AC_AR_SIZE(xlen) |
-    AC_AR_REGNO(S1);
-
-  RUN_AC_OR_DIE(command, 0, 0, data, xlen/(4*8));
-
-  uint32_t abstractcs;
-  for (size_t i = 1; i < (len * 8 / xlen); i++){
-    if (i == 1) {
-      write(DMI_ABSTRACTAUTO, 1 << DMI_ABSTRACTAUTO_AUTOEXECDATA_OFFSET);
+  ret = 0;
+  uint8_t data[1448];
+  uint8_t resp;
+  data[1] = 165;
+  data[0] = 0;
+  while (len / 1440) {
+    *(uint16_t *)(&data[2]) = 1440;
+    *(uint32_t *)(&data[4]) = taddr;
+    data[7] = (1 << 4) + ((char)(data[7] << 4) >> 4);
+    memcpy(&data[8],src,1440);
+    ret = ::write(sock , data , 1448);
+    if ( ret == 0 || ret < 0) {
+      printf("Send failed 0x%x \n",taddr);
+      exit(1);
     }
-    memcpy(data, curr, xlen/8);
-    curr += xlen/8;
-    if (xlen == 64) {
-      write(DMI_DATA0 + 1, data[1]);
+    ::read(sock , &ret, 1);
+    if ((char)ret != 1) {
+      printf("failed write \n");
+      exit(1); 
+    } 
+    src += (size_t)1440;
+    taddr += 1440;
+    len -= 1440;
+#ifdef LOG
+    printf(" TA:0x%x L:0x%x SRCP:0x%x \n",taddr,len,src);
+#endif
+  } 
+  if (len > 0) {
+    *(uint16_t *)(&data[2]) = len;
+    *(uint32_t *)(&data[4]) = taddr;
+    data[7] = (1 << 4) + ((char)(data[7] << 4) >> 4);
+    memcpy(&data[8],src,len);
+    ret = ::write(sock , data , len + 8);
+    if ( ret == 0 || ret < 0) {
+      printf("Send failed 0x%x \n",taddr);
+      exit(1);
     }
-    write(DMI_DATA0, data[0]); //Triggers a command w/ autoexec.
-    
-    do {
-      abstractcs = read(DMI_ABSTRACTCS);
-    } while (abstractcs & DMI_ABSTRACTCS_BUSY);
-    if ( get_field(abstractcs, DMI_ABSTRACTCS_CMDERR)) {
-      die(get_field(abstractcs, DMI_ABSTRACTCS_CMDERR));
+    ::read(sock , &ret, 1);
+    if ((char)ret != 1) {
+      printf("failed write \n");
+      exit(1); 
     }
   }
-  if ((len * 8 / xlen) > 1) {
-    write(DMI_ABSTRACTAUTO, 0);
-  }
-  
-  restore_reg(S0, s0);
-  restore_reg(S1, s1);
-  resume(current_hart);
 }
 
-void dtmxsdb_t::die(uint32_t cmderr)
+void edtm_t::die(uint32_t cmderr)
 {
   const char * codes[] = {
     "OK",
@@ -379,71 +345,36 @@ void dtmxsdb_t::die(uint32_t cmderr)
   printf("ERROR: %s:%d, Debug Abstract Command Error #%d (%s)", __FILE__, __LINE__, cmderr, msg);
   printf("ERROR: %s:%d, Should die, but allowing simulation to continue and fail.", __FILE__, __LINE__);
   write(DMI_ABSTRACTCS, DMI_ABSTRACTCS_CMDERR);
-  exit(1);
+
 }
 
-void dtmxsdb_t::clear_chunk(uint64_t taddr, size_t len)
+void edtm_t::clear_chunk(uint64_t taddr, size_t len)
 {
-  uint32_t prog[ram_words];
-  uint32_t data[data_words];
-  
-  halt(current_hart);
-  uint64_t s0 = save_reg(S0);
-  uint64_t s1 = save_reg(S1);
-
-  uint32_t command;
-
-  // S0 = Addr
-  data[0] = (uint32_t) taddr;
-  data[1] = (uint32_t) (taddr >> 32);
-  command = AC_ACCESS_REGISTER_TRANSFER |
-    AC_ACCESS_REGISTER_WRITE |
-    AC_AR_SIZE(xlen) |
-    AC_AR_REGNO(S0);
-  RUN_AC_OR_DIE(command, 0, 0, data, xlen/(4*8));
-
-  // S1 = Addr + len, loop until S0 = S1
-  prog[0] = STORE(xlen, X0, S0, 0);
-  prog[1] = ADDI(S0, S0, xlen/8);
-  prog[2] = BNE(S0, S1, 0*4, 2*4);
-  prog[3] = EBREAK;
-
-  data[0] = (uint32_t) (taddr + len);
-  data[1] = (uint32_t) ((taddr + len) >> 32);
-  command = AC_ACCESS_REGISTER_TRANSFER |
-    AC_ACCESS_REGISTER_WRITE |
-    AC_AR_SIZE(xlen) |
-    AC_AR_REGNO(S1)  |
-    AC_ACCESS_REGISTER_POSTEXEC;
-  RUN_AC_OR_DIE(command, prog, 4, data, xlen/(4*8));
-
-  restore_reg(S0, s0);
-  restore_reg(S1, s1);
-
-  resume(current_hart);
+  uint32_t data[len] = {0};
+  write_chunk(taddr, len, data);
 }
 
-uint64_t dtmxsdb_t::write_csr(unsigned which, uint64_t data)
+uint64_t edtm_t::write_csr(unsigned which, uint64_t data)
 {
   return modify_csr(which, data, WRITE);
 }
 
-uint64_t dtmxsdb_t::set_csr(unsigned which, uint64_t data)
+uint64_t edtm_t::set_csr(unsigned which, uint64_t data)
 {
   return modify_csr(which, data, SET);
 }
 
-uint64_t dtmxsdb_t::clear_csr(unsigned which, uint64_t data)
+uint64_t edtm_t::clear_csr(unsigned which, uint64_t data)
 {
   return modify_csr(which, data, CLEAR);
 }
 
-uint64_t dtmxsdb_t::read_csr(unsigned which)
+uint64_t edtm_t::read_csr(unsigned which)
 {
   return set_csr(which, 0);
 }
 
-uint64_t dtmxsdb_t::modify_csr(unsigned which, uint64_t data, uint32_t type)
+uint64_t edtm_t::modify_csr(unsigned which, uint64_t data, uint32_t type)
 {
   halt(current_hart);
 
@@ -484,13 +415,13 @@ uint64_t dtmxsdb_t::modify_csr(unsigned which, uint64_t data, uint32_t type)
   return res;  
 }
 
-size_t dtmxsdb_t::chunk_max_size()
+size_t edtm_t::chunk_max_size()
 {
   // Arbitrary choice. 4k Page size seems reasonable.
   return 4096;
 }
 
-uint32_t dtmxsdb_t::get_xlen()
+uint32_t edtm_t::get_xlen()
 {
   // Attempt to read S0 to find out what size it is.
   // You could also attempt to run code, but you need to save registers
@@ -524,7 +455,7 @@ uint32_t dtmxsdb_t::get_xlen()
   throw std::runtime_error("FESVR DTM can't determine XLEN. Aborting");
 }
 
-void dtmxsdb_t::fence_i()
+void edtm_t::fence_i()
 {
   halt(current_hart);
 
@@ -548,10 +479,10 @@ void dtmxsdb_t::fence_i()
 
 void host_thread_main(void* arg)
 {
-  ((dtmxsdb_t*)arg)->producer_thread();
+  ((edtm_t*)arg)->producer_thread();
 }
 
-void dtmxsdb_t::reset()
+void edtm_t::reset()
 {
   for (int hartsel = 0; hartsel < num_harts; hartsel ++ ){
     select_hart(hartsel);
@@ -566,13 +497,13 @@ void dtmxsdb_t::reset()
   read(DMI_DMSTATUS);
 } 
 
-void dtmxsdb_t::idle()
+void edtm_t::idle()
 {
   for (int idle_cycles = 0; idle_cycles < 10; idle_cycles++)
     nop();
 }
 
-void dtmxsdb_t::producer_thread()
+void edtm_t::producer_thread()
 {
   // Learn about the Debug Module and assert things we
   // depend on in this code.
@@ -602,66 +533,57 @@ void dtmxsdb_t::producer_thread()
   resume(0);
   
   int exit_code = htif_t::run();
-
-  if (exit_code) {
-    reset();
-    exit(1);
-  } else {
-    reset();
-    printf("Success\n");
+  if(exit_code != 0)  exit(1);
+  else {
+    printf("Sucess\n");
     exit(0);
   }
-
 }
 
-void dtmxsdb_t::start_host_thread()
+void edtm_t::start_host_thread()
 {
-
   struct sockaddr_in server;
   //Create socket
-  sock = socket(AF_INET , SOCK_STREAM , 0);
+  sock = socket(AF_INET, SOCK_DGRAM, 0);
   if (sock == -1)
   {
       printf("Could not create socket");
       exit(1);
   }
-  server.sin_addr.s_addr = inet_addr("127.0.0.1");
+  server.sin_addr.s_addr = inet_addr("192.168.1.10");
   server.sin_family = AF_INET;
-  server.sin_port = htons( port);
-
+  server.sin_port = htons(12000);
   //Connect to remote server
   if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
   {
       perror("connect failed. Error");
-      exit(1);
+      //exit(1);
   }
-
   host.init(host_thread_main, this);
   host.switch_to();
 }
 
-dtmxsdb_t::dtmxsdb_t(int argc, char** argv)
+edtm_t::edtm_t(int argc, char** argv)
   : htif_t(argc, argv)
 {
   start_host_thread();
 }
 
-dtmxsdb_t::~dtmxsdb_t()
+edtm_t::~edtm_t()
 {
 }
 
 int main(int argc, char** argv)
 {
+  uint64_t max_cycles = 0;
   const char* loadmem = NULL;
   const char* failure = NULL;
   for (int i = 1; i < argc; i++)
   {
     std::string arg = argv[i];
-    if (arg.substr(0, 2) == "+p") {
-      port = atoi(argv[i]+2);
-      argc --;
-    }
+    if (arg.substr(0, 12) == "+max-cycles=")
+      max_cycles = atoll(argv[i]+12);
   }
 
-  dtmxsdb_t *dtm = new dtmxsdb_t(argc,&argv[1]);
+  edtm_t *dtm = new edtm_t(argc,argv);
 }

@@ -10,12 +10,9 @@ import freechips.rocketchip.diplomacy._
 import freechips.rocketchip.system._
 import freechips.rocketchip.tile._
 
-class DefaultDebugPynqConfig extends Config (
-  new WithNBreakpoints(2)        ++
-  new WithNExtTopInterrupts(1)   ++
-  new DualChannelConfig          ++
-  new WithNBigCores(1)
-)
+class DefaultRocketConfig extends Config (new WithNBreakpoints(2) ++ new WithNExtTopInterrupts(1) ++ new DualChannelConfig ++ new WithNBigCores(1))
+
+class SmallRocketConfig extends Config (new WithNBreakpoints(1) ++ new WithNExtTopInterrupts(1) ++ new DualChannelConfig ++ new WithNSmallCores(1))
 
 class ZynqHardPeripherals extends Config((site, here, up) => {
   case ExtBus => MasterPortParams(
@@ -38,7 +35,11 @@ class PLSoftPeripherals extends Config((site, here, up) => {
 class DebugPynqConfig extends Config(
   new PLSoftPeripherals      ++
   new ZynqHardPeripherals    ++
-  new DefaultDebugPynqConfig().alter((site,here,up) => {
+  new DefaultRocketConfig().alter((site,here,up) => {
     case DTSTimebase => BigInt(32768)
   })
 )
+
+class TinyPynqConfig extends Config(new PLSoftPeripherals ++ new ZynqHardPeripherals ++ new TinyConfig)
+
+class SmallPynqConfig extends Config(new PLSoftPeripherals ++ new ZynqHardPeripherals ++ new SmallRocketConfig)

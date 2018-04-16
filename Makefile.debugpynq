@@ -29,8 +29,9 @@ $(hdf):
 hdf: $(hdf)
 
 edtm: $(hdf)
+	@echo "source <Xilinx>/SDK/2017.4/settings64.sh"
 	xsct $(fpga_common_script_dir)/edtmsdk.tcl
-	@echo "Connect to 192.168.1.10 7 \n\tOP\t\tFunc\n\t0\t\tbulk mem write\n\t1\t\tbulk mem read\n\t2\t\t4B write\n\t3\t\t4B read\n\t4\t\tFlush Cache\nideal packet stream in bytes\nOP\t|\"A5\"\t|len0\t|len1\t|addr0\t|addr1\t|addr2\t|addr3\t| Data in Little-Endian"
+	@echo "Connect using UDP to 192.168.1.10 12000 \n\tOP\t\tFunc\n\t0\t\tbulk mem write\n\t1\t\tbulk mem read\n\t2\t\t4B write\n\t3\t\t4B read\n\t4\t\tFlush Cache\nideal packet stream in bytes\nOP\t|\"A5\"\t|len0\t|len1\t|addr0\t|addr1\t|addr2\t|addr3\t| Data in Little-Endian"
 
 cleansdkproject:
-	rm -rf $(SDK_DIR)/zynq_hw $(SDK_DIR)/edtm $(SDK_DIR)/edtm_bsp $(SDK_DIR)/.Xil $(SDK_DIR)/.metadata 
+	rm -rf $(SDK_DIR)/zynq_hw $(SDK_DIR)/edtm $(SDK_DIR)/edtm_bsp $(SDK_DIR)/.Xil $(SDK_DIR)/.metadata

@@ -11,11 +11,11 @@
 #include <stdlib.h>
 
 // abstract debug transport module
-class dtmxsdb_t : public htif_t
+class edtm_t : public htif_t
 {
  public:
-  dtmxsdb_t(int argc, char**argv);
-  ~dtmxsdb_t();
+  edtm_t(int argc, char**argv);
+  ~edtm_t();
 
   struct req {
     uint32_t addr;
@@ -57,7 +57,6 @@ class dtmxsdb_t : public htif_t
 
  private:
   unsigned int sock;
-  char message[100] , response[50];
   context_t host;
   context_t* target;
   pthread_t producer;
@@ -103,7 +102,7 @@ class dtmxsdb_t : public htif_t
   int current_hart;
   
   uint32_t get_xlen();
-  uint32_t do_command(dtmxsdb_t::req r);
+  uint32_t do_command(edtm_t::req r);
 
   void parse_args(const std::vector<std::string>& args);
   void register_devices();
