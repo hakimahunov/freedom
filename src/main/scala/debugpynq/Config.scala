@@ -10,36 +10,35 @@ import freechips.rocketchip.diplomacy._
 import freechips.rocketchip.system._
 import freechips.rocketchip.tile._
 
-class DefaultRocketConfig extends Config (new WithNBreakpoints(2) ++ new WithNExtTopInterrupts(1) ++ new DualChannelConfig ++ new WithNBigCores(1))
+class BaseRocketConfig extends Config(new WithDTS("freechips,rocketchip-unknown", Nil) ++ new BaseSubsystemConfig())
 
-class SmallRocketConfig extends Config (new WithNBreakpoints(1) ++ new WithNExtTopInterrupts(1) ++ new DualChannelConfig ++ new WithNSmallCores(1))
+class DefaultRocketConfig extends Config (new WithNExtTopInterrupts(1) ++ new WithNMemoryChannels(2) ++ new WithNBigCores(1) ++ new BaseRocketConfig)
+
+class TinyRocketConfig extends Config (new WithNMemoryChannels(0)  ++  new WithIncoherentTiles ++  new With1TinyCore ++ new WithDebugSBA  ++  new BaseRocketConfig)
+
+class SmallRocketConfig extends Config (new WithNExtTopInterrupts(1) ++ new WithNMemoryChannels(2) ++ new WithNSmallCores(1) ++ new WithDebugSBA ++ new BaseRocketConfig)
 
 class ZynqHardPeripherals extends Config((site, here, up) => {
-  case ExtBus => MasterPortParams(
+  case ExtBus => Some(MasterPortParams(
                       base = x"6000_0000",
                       size = x"2000_0000",
                       beatBytes = 4,
-                      idBits = 6)
-  case ExtMem => MasterPortParams(
+                      idBits = 6))
+  case ExtMem => Some(MasterPortParams(
                       base = x"8000_0000",
                       size = x"1000_0000",
                       beatBytes = site(MemoryBusKey).beatBytes,
-                      idBits = 6)
+                      idBits = 6))
 })
 
 class PLSoftPeripherals extends Config((site, here, up) => {
-  case PeripheryMaskROMKey => List(
-    MaskROMParams(address = 0x10000, name = "BootROM"))
+  /*case PeripheryMaskROMKey => List(
+    MaskROMParams(address = 0x10000, name = "BootROM"))*/
+    case BootROMParams => BootROMParams(contentFileName = "./rocket-chip/bootrom/bootrom.img")
 })
 
-class DebugPynqConfig extends Config(
-  new PLSoftPeripherals      ++
-  new ZynqHardPeripherals    ++
-  new DefaultRocketConfig().alter((site,here,up) => {
-    case DTSTimebase => BigInt(32768)
-  })
-)
+class DebugPynqConfig extends Config(new PLSoftPeripherals  ++  new ZynqHardPeripherals ++  new DefaultRocketConfig)
 
-class TinyPynqConfig extends Config(new PLSoftPeripherals ++ new ZynqHardPeripherals ++ new TinyConfig)
+class TinyPynqConfig extends Config(new WithNoMemPort ++ new PLSoftPeripherals ++  new ZynqHardPeripherals ++  new TinyConfig)
 
-class SmallPynqConfig extends Config(new PLSoftPeripherals ++ new ZynqHardPeripherals ++ new SmallRocketConfig)
+class SmallPynqConfig extends Config(new PLSoftPeripherals  ++ new ZynqHardPeripherals ++  new SmallRocketConfig)

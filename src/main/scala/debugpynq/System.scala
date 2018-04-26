@@ -12,19 +12,20 @@ import freechips.rocketchip.system._
 
 class DebugPynqSystem(implicit p: Parameters) extends RocketSubsystem
     with HasAsyncExtInterrupts
-    with HasPeripheryMaskROMSlave
-    with HasMasterAXI4MemPort
-    with HasMasterAXI4MMIOPort
+    with HasPeripheryBootROM
+    with CanHaveMasterAXI4MemPort
+    with CanHaveMasterAXI4MMIOPort
     with HasSystemErrorSlave {
   override lazy val module = new DebugPynqSystemModule(this)
 }
 
 class DebugPynqSystemModule[+L <: DebugPynqSystem](_outer: L)
   extends RocketSubsystemModuleImp(_outer)
-    with HasMasterAXI4MemPortModuleImp
-    with HasMasterAXI4MMIOPortModuleImp
+    with CanHaveMasterAXI4MemPortModuleImp
+    with CanHaveMasterAXI4MMIOPortModuleImp
+    with HasPeripheryBootROMModuleImp
     with HasExtInterruptsModuleImp {
   // Reset vector is set to the location of the mask rom
-  val maskROMParams = p(PeripheryMaskROMKey)
-  global_reset_vector := maskROMParams(0).address.U
+  //val maskROMParams = p(PeripheryMaskROMKey)
+  //global_reset_vector := maskROMParams(0).address.U
 }

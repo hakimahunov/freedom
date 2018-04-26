@@ -243,8 +243,63 @@ size_t edtm_t::chunk_align()
   return xlen / 8;
 }
 
+void edtm_t::coh_read_chunk(uint64_t taddr, size_t len, void* dst)
+{
+  uint32_t prog[ram_words];
+  uint32_t data[data_words];
+
+  uint8_t * curr = (uint8_t*) dst;
+
+  halt(current_hart);
+
+  uint64_t s0 = save_reg(S0);
+  uint64_t s1 = save_reg(S1);
+  
+  prog[0] = LOAD(xlen, S1, S0, 0);
+  prog[1] = ADDI(S0, S0, xlen/8);
+  prog[2] = EBREAK;
+
+  data[0] = (uint32_t) taddr;
+  if (xlen > 32) {
+    data[1] = (uint32_t) (taddr >> 32);
+  }
+
+  // Write s0 with the address, then execute program buffer.
+  // This will get S1 with the data and increment s0.
+  uint32_t command = AC_ACCESS_REGISTER_TRANSFER |
+    AC_ACCESS_REGISTER_WRITE |
+    AC_ACCESS_REGISTER_POSTEXEC |
+    AC_AR_SIZE(xlen) | 
+    AC_AR_REGNO(S0);
+
+  RUN_AC_OR_DIE(command, prog, 3, data, xlen/(4*8));
+
+  // TODO: could use autoexec here.
+  for (size_t i = 0; i < (len * 8 / xlen); i++){
+    command = AC_ACCESS_REGISTER_TRANSFER |
+      AC_AR_SIZE(xlen) |
+      AC_AR_REGNO(S1);
+    if ((i + 1) < (len * 8 / xlen)) {
+      command |= AC_ACCESS_REGISTER_POSTEXEC;
+    }
+    
+    RUN_AC_OR_DIE(command, 0, 0, data, xlen/(4*8));
+
+    memcpy(curr, data, xlen/8);
+    curr += xlen/8;
+  }
+
+  restore_reg(S0, s0);
+  restore_reg(S1, s1);
+
+  resume(current_hart); 
+
+}
+
 void edtm_t::read_chunk(uint64_t taddr, size_t len, void* dst)
 {
+  if (len == 8) coh_read_chunk(taddr,len,dst);
+  else {
   ret = 0;
   char data[8];
   data[1] = 165;
@@ -261,10 +316,10 @@ void edtm_t::read_chunk(uint64_t taddr, size_t len, void* dst)
     ::read(sock , dst, 1440);
     dst += (size_t)1440;
     taddr += 1440;
+    len -= 1440;
 #ifdef LOG
     printf(" TA:0x%x L:0x%x DSTP:0x%x \n",taddr,len,dst);
 #endif
-    len -= 1440;
   } 
   if (len > 0) {
     *(uint16_t *)(&data[2]) = len;
@@ -276,6 +331,7 @@ void edtm_t::read_chunk(uint64_t taddr, size_t len, void* dst)
       exit(1);
     }    
     ::read(sock, dst, len);
+  }
   }
 }
 
@@ -531,7 +587,6 @@ void edtm_t::producer_thread()
   // It's possible to do this at the cost of extra cycles.
   xlen = get_xlen();
   resume(0);
-  
   int exit_code = htif_t::run();
   if(exit_code != 0)  exit(1);
   else {

@@ -81,6 +81,7 @@ class edtm_t : public htif_t
   uint64_t modify_csr(unsigned which, uint64_t data, uint32_t type);
 
   void read_chunk(addr_t taddr, size_t len, void* dst) override;
+  void coh_read_chunk(addr_t taddr, size_t len, void* dst);
   void write_chunk(addr_t taddr, size_t len, const void* src) override;
   void clear_chunk(addr_t taddr, size_t len) override;
   size_t chunk_align() override;

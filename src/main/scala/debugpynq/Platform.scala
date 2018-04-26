@@ -11,6 +11,7 @@ import freechips.rocketchip.devices.tilelink._
 import freechips.rocketchip.diplomacy._
 import freechips.rocketchip.amba.axi4._
 import freechips.rocketchip.system._
+import freechips.rocketchip.util._
 
 object AXIParams {
   val a6xi32 = new AXI4BundleParameters(32,32,6,0)
@@ -38,9 +39,6 @@ class AXI4toDMI()(implicit p: Parameters) extends Module {
   val id = Reg(UInt(12.W))
   val waddr = io.ps_slave.aw.bits.addr
   val raddr = io.ps_slave.ar.bits.addr
-  // 0x4000_0000 - 0x4000_01FF
-  val wvalid = !waddr(31) & waddr(30) & !(waddr(29,9).orR) & !(waddr(1,0).orR)
-  val rvalid = !raddr(31) & raddr(30) & !(raddr(29,9).orR) & !(waddr(1,0).orR)
   
   when (io.ps_slave.aw.valid && io.ps_slave.w.valid) {
     io.dmi.req.bits.addr := io.ps_slave.aw.bits.addr(p(DebugModuleParams).nDMIAddrSize + 1,0) >> 2
@@ -89,8 +87,8 @@ class AXI4toDMI()(implicit p: Parameters) extends Module {
 class DebugPynqPlatformIO(implicit val p: Parameters) extends Bundle {
   val m_gp0     = Flipped(new AXI4Bundle(AXIParams.a12xi32))
   val s_gp0     = new AXI4Bundle(AXIParams.a6xi32)
-  val s_hp0     = new AXI4Bundle(AXIParams.axi64)
-  val s_hp2     = new AXI4Bundle(AXIParams.axi64)
+  val s_hp0     = (!p(ExtMem).isEmpty).option(new AXI4Bundle(AXIParams.axi64))
+  val s_hp2     = (!p(ExtMem).isEmpty).option(new AXI4Bundle(AXIParams.axi64))
 }
 
 class DebugPynqPlatform(implicit val p: Parameters) extends Module {
@@ -99,15 +97,17 @@ class DebugPynqPlatform(implicit val p: Parameters) extends Module {
 
   val convert = Module(new AXI4toDMI())
   convert.io.ps_slave <> io.m_gp0
-  io.s_hp0 <> sys.mem_axi4.elts(0)
-  io.s_hp2 <> sys.mem_axi4.elts(1)
+  if (!p(ExtMem).isEmpty) {
+    io.s_hp0.get <> sys.mem_axi4.elts(0)
+    io.s_hp2.get <> sys.mem_axi4.elts(1)
+    // change base address of memory
+    // map 0x80000000 -> 0x10000000
+    io.s_hp0.get.aw.bits.addr := Cat(1.asUInt(4.W),sys.mem_axi4.elts(0).aw.bits.addr(27,0))
+    io.s_hp0.get.ar.bits.addr := Cat(1.asUInt(4.W),sys.mem_axi4.elts(0).ar.bits.addr(27,0))
+    io.s_hp2.get.aw.bits.addr := Cat(1.asUInt(4.W),sys.mem_axi4.elts(1).aw.bits.addr(27,0))
+    io.s_hp2.get.ar.bits.addr := Cat(1.asUInt(4.W),sys.mem_axi4.elts(1).ar.bits.addr(27,0))
+  }
   io.s_gp0 <> sys.mmio_axi4.elts(0)
-  // change base address of memory
-  // map 0x80000000 -> 0x10000000
-  io.s_hp0.aw.bits.addr := Cat(1.asUInt(4.W),sys.mem_axi4.elts(0).aw.bits.addr(27,0))
-  io.s_hp0.ar.bits.addr := Cat(1.asUInt(4.W),sys.mem_axi4.elts(0).ar.bits.addr(27,0))
-  io.s_hp2.aw.bits.addr := Cat(1.asUInt(4.W),sys.mem_axi4.elts(1).aw.bits.addr(27,0))
-  io.s_hp2.ar.bits.addr := Cat(1.asUInt(4.W),sys.mem_axi4.elts(1).ar.bits.addr(27,0))
   // change base address of zynq i/o config registers
   // map 0x60000000 -> 0xE0000000
   io.s_gp0.aw.bits.addr := Cat(7.asUInt(3.W),sys.mmio_axi4.elts(0).aw.bits.addr(28,0))
