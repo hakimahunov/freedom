@@ -1,0 +1,96 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Sun Jan 26 17:17:16 2020
+| Host         : riscv-VirtualBox running 64-bit Ubuntu 18.04.3 LTS
+| Command      : report_methodology -file DebugPynqFPGAChip_methodology_drc_routed.rpt -pb DebugPynqFPGAChip_methodology_drc_routed.pb -rpx DebugPynqFPGAChip_methodology_drc_routed.rpx
+| Design       : DebugPynqFPGAChip
+| Device       : xa7z020clg400-1Q
+| Speed File   : -1Q
+| Design State : Fully Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 12
++----------+----------+------------------------------+------------+
+| Rule     | Severity | Description                  | Violations |
++----------+----------+------------------------------+------------+
+| LUTAR-1  | Warning  | LUT drives async reset alert | 1          |
+| SYNTH-16 | Warning  | Address collision            | 11         |
++----------+----------+------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell DebugPynqPlatform/sys/debug_1/dmOuter/dmOuter/DMCONTROL/reg_0/i___72_i_1__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) DebugPynqPlatform/sys/debug_1/dmInner/dmactiveSync/AsyncResetSynchronizerShiftReg_w1_d3_i0/sync_0/reg_0/q_reg_reg/CLR, DebugPynqPlatform/sys/debug_1/dmInner/dmactiveSync/AsyncResetSynchronizerShiftReg_w1_d3_i0/sync_1/reg_0/q_reg_reg/CLR, DebugPynqPlatform/sys/debug_1/dmInner/dmactiveSync/AsyncResetSynchronizerShiftReg_w1_d3_i0/sync_2/reg_0/q_reg_reg/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+SYNTH-16#1 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/dcache/data/data_arrays_0_0_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#2 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/dcache/data/data_arrays_0_1_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#3 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/dcache/data/data_arrays_0_2_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#4 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/dcache/data/data_arrays_0_3_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#5 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/dcache/data/data_arrays_0_4_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#6 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/dcache/data/data_arrays_0_5_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#7 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/dcache/data/data_arrays_0_6_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#8 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/dcache/data/data_arrays_0_7_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#9 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/dcache/tag_array_0_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#10 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/frontend/icache/data_arrays_0_0_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#11 Warning
+Address collision  
+Block RAM DebugPynqPlatform/sys/tile/frontend/icache/data_arrays_1_0_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+

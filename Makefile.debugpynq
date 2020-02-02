@@ -7,7 +7,7 @@ export FPGA_DIR := $(base_dir)/fpga-shells/xilinx
 export BASE_DIR := $(base_dir)
 export SDK_DIR := $(BUILD_DIR)/sdk
 export CONFIG_PROJECT := sifive.freedom.debug.pynq
-export CONFIG := DebugPynqConfig
+export CONFIG := SmallPynqConfig
 export BOARD := pynq
 export BOOTROM_DIR := $(base_dir)/bootrom/xip
 

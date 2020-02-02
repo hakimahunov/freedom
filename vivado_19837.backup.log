@@ -1,0 +1,48 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Mon Dec  2 20:18:42 2019
+# Process ID: 19837
+# Current directory: /home/risc-v/Documents/freedom
+# Command line: vivado -jvm Xmx6144m
+# Log file: /home/risc-v/Documents/freedom/vivado.log
+# Journal file: /home/risc-v/Documents/freedom/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/risc-v/Documents/freedom/pynq/pynq.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2019.2/data/ip'.
+open_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 9420.426 ; gain = 90.180 ; free physical = 4071 ; free virtual = 7479
+update_compile_order -fileset sources_1
+open_run impl_1
+INFO: [Device 21-403] Loading part xa7z020clg400-1Q
+Netlist sorting complete. Time (s): cpu = 00:00:00.35 ; elapsed = 00:00:00.36 . Memory (MB): peak = 9723.707 ; gain = 0.000 ; free physical = 3741 ; free virtual = 7157
+INFO: [Netlist 29-17] Analyzing 3225 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2019.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Constraints 18-5170] The checkpoint was created with non-default parameter values which do not match the current Vivado settings.  Mismatching parameters are:
+  general.maxThreads
+INFO: [Project 1-853] Binary constraint restore complete.
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 10275.285 ; gain = 51.141 ; free physical = 3208 ; free virtual = 6623
+Restored from archive | CPU: 3.620000 secs | Memory: 63.671654 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 10275.285 ; gain = 51.141 ; free physical = 3208 ; free virtual = 6623
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 10275.285 ; gain = 0.000 ; free physical = 3213 ; free virtual = 6629
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 414 instances were transformed.
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 4 instances
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 60 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 350 instances
+
+open_run: Time (s): cpu = 00:00:32 ; elapsed = 00:00:43 . Memory (MB): peak = 10426.375 ; gain = 983.613 ; free physical = 3085 ; free virtual = 6501
+open_report: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 10469.844 ; gain = 0.000 ; free physical = 2980 ; free virtual = 6396

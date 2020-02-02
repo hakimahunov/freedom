@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Mon Dec  2 19:09:43 2019
+# Process ID: 14184
+# Current directory: /home/risc-v/Documents/freedom/pynq/pynq.runs/reset_sys_synth_1
+# Command line: vivado -log reset_sys.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source reset_sys.tcl
+# Log file: /home/risc-v/Documents/freedom/pynq/pynq.runs/reset_sys_synth_1/reset_sys.vds
+# Journal file: /home/risc-v/Documents/freedom/pynq/pynq.runs/reset_sys_synth_1/vivado.jou
+#-----------------------------------------------------------
+source reset_sys.tcl -notrace

@@ -1,0 +1,35 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Sun Jan 26 17:17:08 2020
+| Host         : riscv-VirtualBox running 64-bit Ubuntu 18.04.3 LTS
+| Command      : report_drc -file DebugPynqFPGAChip_drc_routed.rpt -pb DebugPynqFPGAChip_drc_routed.pb -rpx DebugPynqFPGAChip_drc_routed.rpx
+| Design       : DebugPynqFPGAChip
+| Device       : xa7z020clg400-1Q
+| Speed File   : -1Q
+| Design State : Fully Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 0
++------+----------+-------------+------------+
+| Rule | Severity | Description | Violations |
++------+----------+-------------+------------+
++------+----------+-------------+------------+
+
+2. REPORT DETAILS
+-----------------
+

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xa7z020clg400-1Q" LaunchTime="1580055209">
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="BG-DRC" Name="DebugPynqFPGAChip.drc"/>
+  <File Type="BG-BGN" Name="DebugPynqFPGAChip.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="DebugPynqFPGAChip.sysdef"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="DebugPynqFPGAChip.ltx"/>
+  <File Type="RBD_FILE" Name="DebugPynqFPGAChip.rbd"/>
+  <File Type="NPI_FILE" Name="DebugPynqFPGAChip.npi"/>
+  <File Type="RNPI_FILE" Name="DebugPynqFPGAChip.rnpi"/>
+  <File Type="CFI_FILE" Name="DebugPynqFPGAChip.cfi"/>
+  <File Type="RDI-RDI" Name="DebugPynqFPGAChip.vdi"/>
+  <File Type="RCFI_FILE" Name="DebugPynqFPGAChip.rcfi"/>
+  <File Type="PDI-FILE" Name="DebugPynqFPGAChip.pdi"/>
+  <File Type="BITSTR-MMI" Name="DebugPynqFPGAChip.mmi"/>
+  <File Type="BITSTR-BMM" Name="DebugPynqFPGAChip_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="DebugPynqFPGAChip.nky"/>
+  <File Type="BITSTR-RBT" Name="DebugPynqFPGAChip.rbt"/>
+  <File Type="BITSTR-MSK" Name="DebugPynqFPGAChip.msk"/>
+  <File Type="BG-BIN" Name="DebugPynqFPGAChip.bin"/>
+  <File Type="BG-BIT" Name="DebugPynqFPGAChip.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="DebugPynqFPGAChip_bus_skew_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="DebugPynqFPGAChip_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="DebugPynqFPGAChip_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="DebugPynqFPGAChip_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="DebugPynqFPGAChip_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="DebugPynqFPGAChip_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="DebugPynqFPGAChip_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="DebugPynqFPGAChip_postroute_physopt.dcp"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="DebugPynqFPGAChip_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="DebugPynqFPGAChip_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW" Name="DebugPynqFPGAChip_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="DebugPynqFPGAChip_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="DebugPynqFPGAChip_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="DebugPynqFPGAChip_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="DebugPynqFPGAChip_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="DebugPynqFPGAChip_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="DebugPynqFPGAChip_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="DebugPynqFPGAChip_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="DebugPynqFPGAChip_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="DebugPynqFPGAChip_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="DebugPynqFPGAChip_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="DebugPynqFPGAChip_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="DebugPynqFPGAChip_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="DebugPynqFPGAChip_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="DebugPynqFPGAChip_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="DebugPynqFPGAChip_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="DebugPynqFPGAChip_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="DebugPynqFPGAChip_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="DebugPynqFPGAChip_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="DebugPynqFPGAChip_routed_error.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="DebugPynqFPGAChip_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="DebugPynqFPGAChip_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="DebugPynqFPGAChip_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="DebugPynqFPGAChip_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="DebugPynqFPGAChip_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="DebugPynqFPGAChip_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="DebugPynqFPGAChip_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="DebugPynqFPGAChip_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="DebugPynqFPGAChip_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="DebugPynqFPGAChip_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="DebugPynqFPGAChip_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="DebugPynqFPGAChip_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="DebugPynqFPGAChip_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="DebugPynqFPGAChip_placed.dcp"/>
+  <File Type="PWROPT-DRC" Name="DebugPynqFPGAChip_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="DebugPynqFPGAChip_pwropt.dcp"/>
+  <File Type="OPT-HWDEF" Name="DebugPynqFPGAChip.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="DebugPynqFPGAChip_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="DebugPynqFPGAChip_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="DebugPynqFPGAChip_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="DebugPynqFPGAChip_timing_summary_init.rpt"/>
+  <File Type="PWROPT-TIMING" Name="DebugPynqFPGAChip_timing_summary_pwropted.rpt"/>
+  <File Type="REPORTS-TCL" Name="DebugPynqFPGAChip_reports.tcl"/>
+  <File Type="OPT-TIMING" Name="DebugPynqFPGAChip_timing_summary_opted.rpt"/>
+  <File Type="PA-TCL" Name="DebugPynqFPGAChip.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/vsrc/AsyncResetReg.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../rocket-chip/src/main/resources/vsrc/AsyncResetReg.v"/>
+        <Attr Name="ImportTime" Val="1575294434"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/vsrc/plusarg_reader.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../rocket-chip/src/main/resources/vsrc/plusarg_reader.v"/>
+        <Attr Name="ImportTime" Val="1575294434"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../builds/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v"/>
+        <Attr Name="ImportTime" Val="1580052324"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.DebugPynqConfig.rom.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../builds/debugpynq/sifive.freedom.debug.pynq.DebugPynqConfig.rom.v"/>
+        <Attr Name="ImportTime" Val="1575307584"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.rom.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../builds/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.rom.v"/>
+        <Attr Name="ImportTime" Val="1580052833"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="DebugPynqFPGAChip"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/constraints/pynq-master.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../fpga-shells/xilinx/pynq/constraints/pynq-master.xdc"/>
+        <Attr Name="ImportTime" Val="1575294434"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design" EnableStepBool="1"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="reset_sys"/>
+  <BlockFileSet Type="BlockSrcs" Name="processing_system7_0"/>
+</GenRun>

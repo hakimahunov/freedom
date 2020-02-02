@@ -1,0 +1,729 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Fri Dec  6 21:15:13 2019
+# Process ID: 8689
+# Current directory: /home/risc-v/Documents/freedom
+# Command line: vivado
+# Log file: /home/risc-v/Documents/freedom/vivado.log
+# Journal file: /home/risc-v/Documents/freedom/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/risc-v/Documents/freedom/pynq/pynq.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2019.2/data/ip'.
+open_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 6523.133 ; gain = 133.324 ; free physical = 1736 ; free virtual = 6867
+update_compile_order -fileset sources_1
+import_files -force -norecurse {/home/risc-v/Documents/freedom/builds/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.rom.v /home/risc-v/Documents/freedom/builds/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v}
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1
+[Fri Dec  6 21:18:44 2019] Launched synth_1...
+Run output will be captured here: /home/risc-v/Documents/freedom/pynq/pynq.runs/synth_1/runme.log
+launch_runs impl_1
+[Fri Dec  6 21:29:01 2019] Launched impl_1...
+Run output will be captured here: /home/risc-v/Documents/freedom/pynq/pynq.runs/impl_1/runme.log
+open_run impl_1
+INFO: [Device 21-403] Loading part xa7z020clg400-1Q
+Netlist sorting complete. Time (s): cpu = 00:00:00.28 ; elapsed = 00:00:00.21 . Memory (MB): peak = 6830.258 ; gain = 0.000 ; free physical = 3617 ; free virtual = 6864
+INFO: [Netlist 29-17] Analyzing 1211 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2019.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Constraints 18-5170] The checkpoint was created with non-default parameter values which do not match the current Vivado settings.  Mismatching parameters are:
+  general.maxThreads
+INFO: [Project 1-853] Binary constraint restore complete.
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 7325.312 ; gain = 9.961 ; free physical = 3149 ; free virtual = 6396
+Restored from archive | CPU: 1.190000 secs | Memory: 26.897110 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 7325.312 ; gain = 9.961 ; free physical = 3149 ; free virtual = 6396
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 7325.312 ; gain = 0.000 ; free physical = 3151 ; free virtual = 6399
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 459 instances were transformed.
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 53 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 406 instances
+
+open_run: Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 7497.125 ; gain = 906.469 ; free physical = 3020 ; free virtual = 6277
+open_report: Time (s): cpu = 00:00:08 ; elapsed = 00:00:05 . Memory (MB): peak = 7522.945 ; gain = 25.820 ; free physical = 2924 ; free virtual = 6185
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xa7z020clg400-1Q
+Top: DebugPynqFPGAChip
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 7764.820 ; gain = 239.297 ; free physical = 2524 ; free virtual = 5802
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'DebugPynqFPGAChip' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270204]
+INFO: [Synth 8-6157] synthesizing module 'reset_sys' [/home/risc-v/Documents/freedom/.Xil/Vivado-8689-riscv-VirtualBox/realtime/reset_sys_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'reset_sys' (1#1) [/home/risc-v/Documents/freedom/.Xil/Vivado-8689-riscv-VirtualBox/realtime/reset_sys_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'processing_system7_0' [/home/risc-v/Documents/freedom/.Xil/Vivado-8689-riscv-VirtualBox/realtime/processing_system7_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'processing_system7_0' (2#1) [/home/risc-v/Documents/freedom/.Xil/Vivado-8689-riscv-VirtualBox/realtime/processing_system7_0_stub.v:6]
+WARNING: [Synth 8-689] width (8) of port connection 'S_AXI_HP2_ARLEN' does not match port width (4) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270542]
+WARNING: [Synth 8-689] width (8) of port connection 'S_AXI_HP2_AWLEN' does not match port width (4) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270553]
+WARNING: [Synth 8-689] width (8) of port connection 'S_AXI_HP0_ARLEN' does not match port width (4) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270579]
+WARNING: [Synth 8-689] width (8) of port connection 'S_AXI_HP0_AWLEN' does not match port width (4) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270590]
+WARNING: [Synth 8-689] width (8) of port connection 'S_AXI_GP0_ARLEN' does not match port width (4) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270618]
+WARNING: [Synth 8-689] width (8) of port connection 'S_AXI_GP0_AWLEN' does not match port width (4) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270629]
+WARNING: [Synth 8-689] width (8) of port connection 'M_AXI_GP0_ARLEN' does not match port width (4) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270655]
+WARNING: [Synth 8-689] width (1) of port connection 'M_AXI_GP0_ARLOCK' does not match port width (2) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270656]
+WARNING: [Synth 8-689] width (8) of port connection 'M_AXI_GP0_AWLEN' does not match port width (4) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270666]
+WARNING: [Synth 8-689] width (1) of port connection 'M_AXI_GP0_AWLOCK' does not match port width (2) of module 'processing_system7_0' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270667]
+WARNING: [Synth 8-7023] instance 'ps7' of module 'processing_system7_0' has 191 connections declared, but only 175 given [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:270537]
+INFO: [Synth 8-6157] synthesizing module 'DebugPynqPlatform' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:269599]
+INFO: [Synth 8-6157] synthesizing module 'DebugPynqSystem' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:267396]
+INFO: [Synth 8-6157] synthesizing module 'IntXbar' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'IntXbar' (3#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:1]
+INFO: [Synth 8-6157] synthesizing module 'SystemBus' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:61374]
+INFO: [Synth 8-6157] synthesizing module 'TLXbar' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:8391]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:9644]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:7]
+INFO: [Synth 8-6157] synthesizing module 'plusarg_reader' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/vsrc/plusarg_reader.v:7]
+	Parameter FORMAT bound to: tilelink_timeout=%d - type: string 
+	Parameter DEFAULT bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'plusarg_reader' (4#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/vsrc/plusarg_reader.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor' (5#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:7]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:9663]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_1' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:2739]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_1' (6#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:2739]
+INFO: [Synth 8-6155] done synthesizing module 'TLXbar' (7#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:8391]
+INFO: [Synth 8-6157] synthesizing module 'TLSplitter' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:20316]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:20484]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_2' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:11954]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_2' (8#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:11954]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:20503]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_3' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:14680]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_3' (9#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:14680]
+INFO: [Synth 8-6155] done synthesizing module 'TLSplitter' (10#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:20316]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:29175]
+INFO: [Synth 8-6157] synthesizing module 'TLFIFOFixer' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:23378]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:23436]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_4' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:20652]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_4' (11#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:20652]
+INFO: [Synth 8-6155] done synthesizing module 'TLFIFOFixer' (12#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:23378]
+INFO: [Synth 8-6157] synthesizing module 'TLWidthWidget' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:26219]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:26277]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_5' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:23493]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_5' (13#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:23493]
+INFO: [Synth 8-6155] done synthesizing module 'TLWidthWidget' (14#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:26219]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:29060]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:29118]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_6' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:26334]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_6' (15#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:26334]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer' (16#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:29060]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule' (17#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:29175]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_2' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:29528]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_2' (18#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:29528]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_4' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:41366]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_1' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:35266]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:35383]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_7' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:29630]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_7' (19#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:29630]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_1' (20#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:35266]
+INFO: [Synth 8-6157] synthesizing module 'TLFIFOFixer_1' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:41134]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:41251]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_8' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:35498]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_8' (21#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:35498]
+INFO: [Synth 8-6155] done synthesizing module 'TLFIFOFixer_1' (22#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:41134]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_4' (23#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:41366]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_5' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:56867]
+INFO: [Synth 8-6157] synthesizing module 'AXI4Buffer' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:42707]
+INFO: [Synth 8-6157] synthesizing module 'Queue' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:41881]
+INFO: [Synth 8-6155] done synthesizing module 'Queue' (24#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:41881]
+INFO: [Synth 8-6157] synthesizing module 'Queue_1' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:42200]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_1' (25#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:42200]
+INFO: [Synth 8-6157] synthesizing module 'Queue_2' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:42369]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_2' (26#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:42369]
+INFO: [Synth 8-6157] synthesizing module 'Queue_4' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:42513]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_4' (27#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:42513]
+INFO: [Synth 8-6155] done synthesizing module 'AXI4Buffer' (28#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:42707]
+INFO: [Synth 8-6157] synthesizing module 'AXI4UserYanker' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:43127]
+INFO: [Synth 8-6157] synthesizing module 'Queue_5' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:43048]
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'Queue_5' (29#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:43048]
+INFO: [Synth 8-6155] done synthesizing module 'AXI4UserYanker' (30#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:43127]
+INFO: [Synth 8-6157] synthesizing module 'AXI4Deinterleaver' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:44570]
+INFO: [Synth 8-6157] synthesizing module 'Queue_13' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:44351]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_13' (31#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:44351]
+INFO: [Synth 8-6155] done synthesizing module 'AXI4Deinterleaver' (32#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:44570]
+INFO: [Synth 8-6157] synthesizing module 'AXI4IdIndexer' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:46270]
+INFO: [Synth 8-6155] done synthesizing module 'AXI4IdIndexer' (33#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:46270]
+INFO: [Synth 8-6157] synthesizing module 'TLToAXI4' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:49459]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:49731]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_9' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:46396]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_9' (34#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:46396]
+INFO: [Synth 8-6157] synthesizing module 'Queue_17' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:48974]
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_data_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_data_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_strb_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_strb_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_last_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_last_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'Queue_17' (35#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:48974]
+INFO: [Synth 8-6157] synthesizing module 'Queue_18' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:49119]
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_id_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_id_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_addr_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_addr_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_len_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_len_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_size_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_size_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_burst_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_burst_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_lock_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_lock_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_cache_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_cache_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_prot_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_prot_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_qos_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_qos_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_user_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_user_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_wen_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_wen_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'Queue_18' (36#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:49119]
+INFO: [Synth 8-6155] done synthesizing module 'TLToAXI4' (37#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:49459]
+INFO: [Synth 8-6157] synthesizing module 'TLWidthWidget_1' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:53120]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:53242]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_10' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:50331]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_10' (38#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:50331]
+INFO: [Synth 8-6157] synthesizing module 'Repeater' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:52973]
+INFO: [Synth 8-6155] done synthesizing module 'Repeater' (39#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:52973]
+INFO: [Synth 8-6155] done synthesizing module 'TLWidthWidget_1' (40#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:53120]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_2' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:56654]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:56748]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_11' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:53432]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_11' (41#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:53432]
+INFO: [Synth 8-6157] synthesizing module 'Queue_19' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:56118]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_19' (42#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:56118]
+INFO: [Synth 8-6157] synthesizing module 'Queue_20' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:56387]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_20' (43#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:56387]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_2' (44#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:56654]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_5' (45#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:56867]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_6' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:61241]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_3' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:61038]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:61126]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_12' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:58102]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_12' (46#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:58102]
+INFO: [Synth 8-6157] synthesizing module 'Queue_21' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:60794]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_21' (47#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:60794]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_3' (48#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:61038]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_6' (49#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:61241]
+INFO: [Synth 8-6155] done synthesizing module 'SystemBus' (50#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:61374]
+INFO: [Synth 8-6157] synthesizing module 'PeripheryBus' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:102650]
+INFO: [Synth 8-6157] synthesizing module 'TLXbar_1' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:65931]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:66238]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_13' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:63247]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_13' (51#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:63247]
+INFO: [Synth 8-6155] done synthesizing module 'TLXbar_1' (52#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:65931]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_7' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:74912]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_4' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:70102]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:70200]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_14' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:66846]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_14' (53#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:66846]
+INFO: [Synth 8-6157] synthesizing module 'Queue_23' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:69564]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_23' (54#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:69564]
+INFO: [Synth 8-6157] synthesizing module 'Queue_24' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:69833]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_24' (55#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:69833]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_4' (56#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:70102]
+INFO: [Synth 8-6157] synthesizing module 'TLAtomicAutomata' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:73049]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:73849]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_15' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:70323]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_15' (57#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:70323]
+INFO: [Synth 8-6155] done synthesizing module 'TLAtomicAutomata' (58#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:73049]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_7' (59#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:74912]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_5' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:77893]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:77991]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_16' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:75167]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_16' (60#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:75167]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_5' (61#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:77893]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_8' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:84135]
+INFO: [Synth 8-6157] synthesizing module 'TLFragmenter' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:80885]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:81055]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_17' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:78114]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_17' (62#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:78114]
+INFO: [Synth 8-6157] synthesizing module 'Repeater_1' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:80748]
+INFO: [Synth 8-6155] done synthesizing module 'Repeater_1' (63#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:80748]
+INFO: [Synth 8-6155] done synthesizing module 'TLFragmenter' (64#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:80885]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_6' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:84032]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:84084]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_18' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:81398]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_18' (65#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:81398]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_6' (66#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:84032]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_8' (67#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:84135]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_9' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:90313]
+INFO: [Synth 8-6157] synthesizing module 'TLFragmenter_1' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:87097]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:87267]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_19' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:84360]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_19' (68#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:84360]
+INFO: [Synth 8-6157] synthesizing module 'Repeater_2' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:86960]
+INFO: [Synth 8-6155] done synthesizing module 'Repeater_2' (69#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:86960]
+INFO: [Synth 8-6155] done synthesizing module 'TLFragmenter_1' (70#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:87097]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_7' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:90210]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:90262]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_20' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:87610]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_20' (71#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:87610]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_7' (72#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:90210]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_9' (73#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:90313]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_10' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:96487]
+INFO: [Synth 8-6157] synthesizing module 'TLFragmenter_2' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:93273]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:93443]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_21' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:90538]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_21' (74#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:90538]
+INFO: [Synth 8-6157] synthesizing module 'Repeater_3' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:93136]
+INFO: [Synth 8-6155] done synthesizing module 'Repeater_3' (75#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:93136]
+INFO: [Synth 8-6155] done synthesizing module 'TLFragmenter_2' (76#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:93273]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_8' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:96384]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:96436]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_22' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:93786]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_22' (77#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:93786]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_8' (78#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:96384]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_10' (79#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:96487]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_12' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:102451]
+INFO: [Synth 8-6157] synthesizing module 'TLFragmenter_3' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:99369]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:99516]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_23' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:96712]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_23' (80#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:96712]
+INFO: [Synth 8-6157] synthesizing module 'Repeater_4' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:99232]
+INFO: [Synth 8-6155] done synthesizing module 'Repeater_4' (81#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:99232]
+INFO: [Synth 8-6155] done synthesizing module 'TLFragmenter_3' (82#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:99369]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_10' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:102357]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:102404]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_24' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:99837]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_24' (83#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:99837]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_10' (84#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:102357]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_12' (85#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:102451]
+INFO: [Synth 8-6155] done synthesizing module 'PeripheryBus' (86#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:102650]
+INFO: [Synth 8-6157] synthesizing module 'FrontBus' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:121822]
+INFO: [Synth 8-6157] synthesizing module 'TLXbar_2' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:106161]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:106221]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_25' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:103505]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_25' (87#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:103505]
+INFO: [Synth 8-6155] done synthesizing module 'TLXbar_2' (88#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:106161]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_13' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:109152]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_11' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:109049]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:109101]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_26' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:106369]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_26' (89#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:106369]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_11' (90#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:109049]
+INFO: [Synth 8-6155] done synthesizing module 'SimpleLazyModule_13' (91#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:109152]
+INFO: [Synth 8-6157] synthesizing module 'TLBuffer_12' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:112508]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:112598]
+INFO: [Synth 8-6157] synthesizing module 'TLMonitor_27' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:109293]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_27' (92#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:109293]
+INFO: [Synth 8-6157] synthesizing module 'Queue_27' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:111973]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_27' (93#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:111973]
+INFO: [Synth 8-6157] synthesizing module 'Queue_28' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:112240]
+INFO: [Synth 8-6155] done synthesizing module 'Queue_28' (94#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:112240]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_12' (95#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:112508]
+INFO: [Synth 8-6157] synthesizing module 'SimpleLazyModule_14' [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:121543]
+INFO: [Common 17-14] Message 'Synth 8-6157' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:115416]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_28' (96#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:112711]
+INFO: [Synth 8-6155] done synthesizing module 'TLBuffer_13' (97#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:115367]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:118169]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_29' (98#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:115464]
+INFO: [Synth 8-6155] done synthesizing module 'TLFIFOFixer_2' (99#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:118120]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:121111]
+INFO: [Synth 8-6155] done synthesizing module 'TLMonitor_30' (100#1) [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:118217]
+INFO: [Common 17-14] Message 'Synth 8-6155' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:135388]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:135422]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:142911]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:142929]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:145646]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:148421]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:151098]
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_reg" dissolved into registers
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:158684]
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_data_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_data_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_strb_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_strb_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_last_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_last_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_id_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_id_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_addr_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_addr_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_len_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_len_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_size_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_size_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_burst_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_burst_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_lock_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_lock_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_cache_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_cache_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_prot_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_prot_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_qos_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_qos_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_user_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_user_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_wen_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_wen_reg" dissolved into registers
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:163980]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:167799]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:170574]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:173251]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:177019]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:182315]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:186494]
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_read_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_read_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_index_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_index_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_data_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_data_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_mask_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_mask_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_extra_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_extra_reg" dissolved into registers
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:189644]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:192522]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:195868]
+WARNING: [Synth 8-6896] if statement with non-constant condition is inside initial block, initial block items will be ignored [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/vsrc/AsyncResetReg.v:64]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:199223]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:214093]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:214110]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:233943]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:233982]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:249638]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:257203]
+	Parameter FORMAT bound to: max_core_cycles=%d - type: string 
+	Parameter DEFAULT bound to: 0 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element _T_2723_reg was removed.  [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:259013]
+WARNING: [Synth 8-6014] Unused sequential element _T_2725_reg was removed.  [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:259028]
+WARNING: [Synth 8-6014] Unused sequential element _T_2728_reg was removed.  [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:259031]
+WARNING: [Synth 8-6014] Unused sequential element _T_2730_reg was removed.  [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:259046]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:263848]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/imports/debugpynq/sifive.freedom.debug.pynq.SmallPynqConfig.v:267238]
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_opcode_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_opcode_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_size_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_size_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_source_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Write port has constant address. 
+	2: No valid read/write found for RAM. 
+	2: Only 1 word in RAM 
+RAM "ram_source_reg" dissolved into registers
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[31]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[30]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[29]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[28]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[27]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[26]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[25]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[24]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[23]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[22]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[21]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[20]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[19]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[18]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[17]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[16]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[15]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[14]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[13]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[12]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[11]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[10]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[9]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[1]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_aw_bits_addr[0]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[31]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[30]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[29]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[28]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[27]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[26]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[25]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[24]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[23]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[22]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[21]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[20]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[19]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[18]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[17]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[16]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[15]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[14]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[13]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[12]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[11]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[10]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[9]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[1]
+WARNING: [Synth 8-3331] design AXI4toDMI has unconnected port io_ps_slave_ar_bits_addr[0]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port clock
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port reset
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_ready
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_valid
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_opcode[2]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_opcode[1]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_opcode[0]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_param[2]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_param[1]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_param[0]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_size[3]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_size[2]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_size[1]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_size[0]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_source[2]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_source[1]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_source[0]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[13]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[12]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[11]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[10]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[9]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[8]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[7]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[6]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[5]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[4]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[3]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[2]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[1]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_address[0]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_mask[7]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_mask[6]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_mask[5]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_mask[4]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_mask[3]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_mask[2]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_mask[1]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_a_bits_mask[0]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_ready
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_valid
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_bits_opcode[2]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_bits_opcode[1]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_bits_opcode[0]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_bits_size[3]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_bits_size[2]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_bits_size[1]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_bits_size[0]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_bits_source[2]
+WARNING: [Synth 8-3331] design TLMonitor_56 has unconnected port io_in_d_bits_source[1]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 8114.914 ; gain = 589.391 ; free physical = 2310 ; free virtual = 5597
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 8129.758 ; gain = 604.234 ; free physical = 2411 ; free virtual = 5698
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 8129.758 ; gain = 604.234 ; free physical = 2411 ; free virtual = 5698
+---------------------------------------------------------------------------------
+INFO: [Project 1-454] Reading design checkpoint '/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/reset_sys/reset_sys.dcp' for cell 'ip_reset_sys'
+INFO: [Project 1-454] Reading design checkpoint '/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/processing_system7_0/processing_system7_0.dcp' for cell 'ps7'
+Netlist sorting complete. Time (s): cpu = 00:00:00.80 ; elapsed = 00:00:00.80 . Memory (MB): peak = 8129.758 ; gain = 0.000 ; free physical = 2299 ; free virtual = 5587
+INFO: [Project 1-479] Netlist was created with Vivado 2019.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/processing_system7_0/processing_system7_0.xdc] for cell 'ps7/inst'
+CRITICAL WARNING: [Netlist 29-160] Cannot set property 'iostandard', because the property does not exist for objects of type 'pin'. [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/processing_system7_0/processing_system7_0.xdc:717]
+Resolution: Modify the set_property command to apply the property on the correct object type. Since the property is being applied as a scoped constraint, ensure the proper connectivity of the object port objects can be translated into pin objects. This could be due to the insertion of IO Buffers between the top level terminal and cell pin. If the goal is to apply constraints that will migrate to top level ports it is required that IO Buffers manually be instanced.
+CRITICAL WARNING: [Netlist 29-160] Cannot set property 'PACKAGE_PIN', because the property does not exist for objects of type 'pin'. [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/processing_system7_0/processing_system7_0.xdc:718]
+Resolution: Modify the set_property command to apply the property on the correct object type. Since the property is being applied as a scoped constraint, ensure the proper connectivity of the object port objects can be translated into pin objects. This could be due to the insertion of IO Buffers between the top level terminal and cell pin. If the goal is to apply constraints that will migrate to top level ports it is required that IO Buffers manually be instanced.
+CRITICAL WARNING: [Netlist 29-160] Cannot set property 'slew', because the property does not exist for objects of type 'pin'. [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/processing_system7_0/processing_system7_0.xdc:719]
+Resolution: Modify the set_property command to apply the property on the correct object type. Since the property is being applied as a scoped constraint, ensure the proper connectivity of the object port objects can be translated into pin objects. This could be due to the insertion of IO Buffers between the top level terminal and cell pin. If the goal is to apply constraints that will migrate to top level ports it is required that IO Buffers manually be instanced.
+Finished Parsing XDC File [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/processing_system7_0/processing_system7_0.xdc] for cell 'ps7/inst'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/processing_system7_0/processing_system7_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/DebugPynqFPGAChip_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/DebugPynqFPGAChip_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/reset_sys/reset_sys_board.xdc] for cell 'ip_reset_sys/U0'
+Finished Parsing XDC File [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/reset_sys/reset_sys_board.xdc] for cell 'ip_reset_sys/U0'
+Parsing XDC File [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/reset_sys/reset_sys.xdc] for cell 'ip_reset_sys/U0'
+Finished Parsing XDC File [/home/risc-v/Documents/freedom/pynq/pynq.srcs/sources_1/ip/reset_sys/reset_sys.xdc] for cell 'ip_reset_sys/U0'
+Parsing XDC File [/home/risc-v/Documents/freedom/pynq/pynq.srcs/constrs_1/imports/constraints/pynq-master.xdc]
+Finished Parsing XDC File [/home/risc-v/Documents/freedom/pynq/pynq.srcs/constrs_1/imports/constraints/pynq-master.xdc]
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 8302.449 ; gain = 0.000 ; free physical = 2170 ; free virtual = 5458
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:00:37 ; elapsed = 00:00:36 . Memory (MB): peak = 8358.477 ; gain = 832.953 ; free physical = 2203 ; free virtual = 5494
+210 Infos, 212 Warnings, 3 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:36 . Memory (MB): peak = 8358.477 ; gain = 832.953 ; free physical = 2203 ; free virtual = 5494
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Dec  6 21:55:38 2019...
